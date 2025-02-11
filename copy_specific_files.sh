@@ -12,7 +12,7 @@ fi
 
 # Проверка ования целевой директории
 if [  ! -d $target_dir ]; then
-    echo "целевой  директории exist"
+    echo "целевой директории exist"
     exit 1
 fi
 
