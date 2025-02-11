@@ -19,6 +19,21 @@ if [ ! -d $target_dir ]; then
 fi
 
 # Проверка, есть ли файлы с указанным расширением в исходной директории
+shopt -s nullglob
+files=("$source_dir"/*."$file_extention")
 
+if [ ${#files[@]} -eq 0 ]; then
+    echo "Ошибка: В исходной директории нет файлов с расширением '$file_extention'."
+    exit 1
+fi
 # Копирование файлов с указанным расширением в целевую директорию
+
 cp *."$file_extention" target/ 2>/dev/null
+=======
+for file in "${files[@]}"; do
+    cp "$file" "$target_dir"
+    echo "Скопирован файл: $(basename "$file")"
+done
+
+echo "Копирование завершено."
+
