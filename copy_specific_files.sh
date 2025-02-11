@@ -27,4 +27,9 @@ if [ ${#files[@]} -eq 0 ]; then
     exit 1
 fi
 # Копирование файлов с указанным расширением в целевую директорию
-cp "$source_dir"/*."$file_extension" "$target_dir"
+for file in "${files[@]}"; do
+    cp "$file" "$target_dir"
+    echo "Скопирован файл: $(basename "$file")"
+done
+
+echo "Копирование завершено."
